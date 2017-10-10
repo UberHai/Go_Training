@@ -1,4 +1,4 @@
-package main
+package _1_fib_and_for_loop
 
 import "fmt"
 
