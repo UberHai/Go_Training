@@ -1,12 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	c := make(chan []byte)
 
+	start := time.Now()
 	go func() {
-		s:=make([]byte, 10)
+		s := make([]byte, 10)
 		for i := 0; i < 10; i++ {
 			s[i] = byte(i)
 		}
@@ -14,6 +18,8 @@ func main() {
 		c <- str
 		close(c)
 	}()
-		//Haha, I think this passes the test
-		fmt.Println(<-c)
+	elapsed := time.Since(start)
+	//Haha, I think this passes the test
+	fmt.Println(<-c)
+	fmt.Println(elapsed)
 }
