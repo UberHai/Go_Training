@@ -8,7 +8,7 @@ import (
 func main() {
 	c := make(chan []byte)
 
-	start := time.Now()
+	start := time.Now().Nanosecond()
 	go func() {
 		s := make([]byte, 10)
 		for i := 0; i < 10; i++ {
@@ -18,8 +18,8 @@ func main() {
 		c <- str
 		close(c)
 	}()
-	elapsed := time.Since(start)
+	elapsed := time.Now().Nanosecond()
 	//Haha, I think this passes the test
 	fmt.Println(<-c)
-	fmt.Println(elapsed)
+	fmt.Println(elapsed - start)
 }
